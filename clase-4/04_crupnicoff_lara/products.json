@@ -1,0 +1,42 @@
+[
+  {
+    "name": "tres",
+    "price": 3000,
+    "id": "043f543c-dbac-4ec5-9483-1572ed22a174"
+  },
+  {
+    "name": "cuatro",
+    "price": 500,
+    "id": "57cb9ca4-7210-4d07-888f-401f08834b16"
+  },
+  {
+    "name": "tres",
+    "price": 3000,
+    "id": "900a76fa-d0d1-44fe-911c-d964f79db7c5"
+  },
+  {
+    "name": "cuatro",
+    "price": 500,
+    "id": "616f4ab7-462d-40ca-991a-c8cd8767447d"
+  },
+  {
+    "name": "dos",
+    "price": 3000,
+    "id": "278fcc0f-6225-4561-b11e-43e001372d08"
+  },
+  {
+    "name": "uno",
+    "price": 500,
+    "id": "2f7cfd63-b780-4de9-a253-76c335792e65"
+  },
+  {
+    "name": "dos",
+    "price": 3000,
+    "id": "b7eef0f6-6482-4775-b525-d7af9d8a3be0"
+  },
+  {
+    "name": "uno",
+    "price": 500,
+    "id": "3c77574f-cfb7-4fe5-b58b-61a61aa087f2"
+  }
+]
