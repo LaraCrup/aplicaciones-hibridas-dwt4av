@@ -1,0 +1,18 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "title": "Mate",
+      "description": "Mate para tomar mate",
+      "price": 1000,
+      "stock": 1
+    },
+    {
+      "id": 2,
+      "title": "Termo",
+      "description": "Termo para tomar mate",
+      "price": 2000,
+      "stock": 3
+    }
+  ]
+}
