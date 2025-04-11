@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/styles.css">
+    <title>Document</title>
+</head>
+<body>
+    <header><h1>API Rest</h1></header>
+    <main>
+        <h2>API Rest</h2>
+        <p>Esta es una API Rest que permite gestionar una lista de usuarios.</p>
+        <h3>Endpoints</h3>
+        <ul>
+            <li><strong>GET /api/users</strong>: Obtiene la lista de usuarios.</li>
+            <li><strong>POST /api/users</strong>: Crea un nuevo usuario.</li>
+            <pre>
+                {
+                    "name": "string",
+                    "email": "string",  
+                }
+            </pre>
+            <li><strong>GET /api/users/:id</strong>: Obtiene un usuario por su ID.</li>
+            <li><strong>PUT /api/users/:id</strong>: Actualiza un usuario por su ID.</li>
+            <li><strong>DELETE /api/users/:id</strong>: Elimina un usuario por su ID.</li>
+        </ul>
+    </main>
+    <footer><p>DV Footer</p></footer>
+</body>
+</html>
