@@ -18,20 +18,31 @@ const getUsers = async (req, res) => {
 }
 
 const setUser = async (req, res) => {
+    const { name, email, password } = req.body;
+    if (!name || !email || !password) {
+        return res.status(400).json({ msg: "El email, nombre y la contraseña son obligatorios" });
+        
+    }
     try {
-        const { name, email, legajo, password } = req.body;
         const user = await User.findOne({ email: email });
         if (user) {
             return res.status(404).json({ msg: "El usuario ya existe" });
         }
         const passwordHash = await bcrypt.hash(password, salt);
-        const userNew = new User({ name, email, legajo, password: passwordHash });
-        userNew.save();
+        const userNew = new User({ name, email, password: passwordHash });
+        
+        await userNew.save();
         const id = userNew._id;
         res.status(202).json({ msg: "Usuario guardado", id });
     } catch (error) {
-        console.error(error);
-        res.status(500).json({ msg: "Error del servidor. No se pudo guardar el usuario", error });
+        if (error.name === "ValidationError") {
+            const listError = Object.values(error.errors)[0].message
+            return res.status(500).json({ errors: error.errors, msg: "Error de validación", errors: listError });
+            
+        } else {
+            console.error(error);
+            res.status(500).json({ msg: "Error del servidor. No se pudo guardar el usuario" });
+        }
     }
 }
 

@@ -7,7 +7,8 @@ const getProducts = async( request, response) => {
         if( full){
             products = await Product.find({full});
         } else {
-            products = await Product.find();
+            // Aca deberia verificar que la categoria exista
+            products = await Product.find().populate('categoria');
         }
      
         response.status(200).json({ msg: 'ok', data: products});
@@ -34,16 +35,25 @@ const getProductById = async( request, response) => {
 }
 
 const setProduct = async( request, response) =>{
+    const { name, price, full, categoriaId } = request.body;
+    if(!name || !price || !categoriaId) {
+        return response.status(400).json({ msg: 'Faltan datos obligatorios' });
+    }
     try {
-        const { name, price, full } = request.body;
-        const productNew = new Product( {name, price, full}); 
-        productNew.save();
+        const productNew = new Product( {name, price, full, categoria: categoriaId}); 
+        await productNew.save();
         const id = productNew._id;
    
         response.status(202).json({msg: 'Producto guardado', id } );
     } catch (error) {
-        console.error({error});
-        response.status(500).json({error: 'Error del servidor'});
+        if (error.name === "ValidationError") {
+            const listError = Object.values(error.errors)[0].message
+            return res.status(500).json({ errors: error.errors, msg: "Error de validación", errors: listError });
+            
+        } else {
+            console.error(error);
+            res.status(500).json({ msg: "Error del servidor. No se pudo guardar el usuario" });
+        }
     }
 }
 
