@@ -9,6 +9,28 @@
   color: #646cff;
 }
 
+.card {
+  border: 1px solid darkblue;
+  width: 300px;
+  padding: 10px;
+  border-radius: 16px;
+  margin-bottom: 40px;
+}
+
+.card img{
+  width: 100%;
+}
+
+.productContainer{
+  border: 1px solid darkblue;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  height: 100%;
+  padding: 20px;
+}
+
 .logo {
   height: 6em;
   padding: 1.5em;
