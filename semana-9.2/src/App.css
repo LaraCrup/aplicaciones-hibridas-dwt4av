@@ -1,0 +1,26 @@
+
+header{
+  padding: 5px;
+  text-align: center;
+}
+
+.btnSaludar{
+  margin: 0 auto;
+}
+
+.productsContainer{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin: 0 auto;
+}
+
+.card{
+  border: 1px solid darkblue;
+  width: 300px;
+  padding: 10px;
+  border-radius: 16px;
+  margin-bottom: 40px;
+} 
