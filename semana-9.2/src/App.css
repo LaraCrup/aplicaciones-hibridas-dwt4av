@@ -24,3 +24,7 @@ header{
   border-radius: 16px;
   margin-bottom: 40px;
 } 
+
+table{
+  border: 1px solid black;
+}
