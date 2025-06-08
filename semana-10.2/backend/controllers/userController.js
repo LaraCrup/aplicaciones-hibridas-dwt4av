@@ -2,6 +2,7 @@ import  User from "../models/userModel.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
+import { use } from "react";
 dotenv.config();
 const secret_key = process.env.SECRET_KEY;
 
@@ -51,9 +52,13 @@ const getUserById = async (req, res) => {
         const id = req.params.id;
         const user = await User.findById(id);
         if (!user) {
+            const data = {};
+            data._id = user._id;
+            data.name = user.name;
+            data.email = user.email;
             return res.status(404).json({ msg: "ID no encontrado", data: [] });
         } else {
-            res.status(200).json({ msg: "OK", data: user });
+            res.status(200).json({ msg: "OK", data });
         }
     } catch (error) {
         console.error(error);

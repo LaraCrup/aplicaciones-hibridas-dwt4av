@@ -1,8 +1,11 @@
 import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom';
 
 function Users() {
     const host = 'http://localhost:3000/api'
     const [users, setUsers] = useState([]);
+
+    const navigate = useNavigate();
 
     async function getUsers() {
         try {
@@ -47,7 +50,9 @@ function Users() {
 
     return (
         <>
-            <h2>Lista de Usuarios</h2>
+            <h2>ABM de Usuarios</h2>
+            <input type="search" />
+            <button type='button' onClick={() => {navigate('/usernew')}}>Nuevo Usuario</button>
             <table>
                 <thead>
                     <tr>
@@ -62,7 +67,7 @@ function Users() {
                             <td>{user.name}</td>
                             <td>{user.email}</td>
                             <td>
-                                <button>E</button>
+                                <button type='button' onClick={() => {navigate(`/userupdate/${user._id}`)}}>E</button>
                             </td>
                             <td>
                                 <button type='button' onClick={() => {deleteUser(user._id)}}>D</button>

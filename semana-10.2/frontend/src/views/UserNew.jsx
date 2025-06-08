@@ -18,8 +18,6 @@ function UserNew() {
             ...user,
             [key]: value
         });
-
-        //
     }
 
     async function postUser(e) {

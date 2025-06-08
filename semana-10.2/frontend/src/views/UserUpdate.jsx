@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 
 function UserUpdate() {
@@ -9,9 +9,29 @@ function UserUpdate() {
         email: '',
         password: ''
     });
-    const {id} = useParams();
+    const { id } = useParams();
 
     const navigate = useNavigate();
+
+    async function getUserById() {
+        try {
+            const response = await fetch(`${host}/users/${id}`);
+            if (!response.ok) {
+                alert('Error al obtener el usuario');
+                return
+            }
+            const { data } = await response.json();
+            setUser(data);
+
+        } catch (error) {
+            console.error(error);
+        }
+
+    }
+
+    useEffect(() => {
+        getUserById();
+    }, []);
 
     function handlerChange(e) {
         setUser({
@@ -24,7 +44,7 @@ function UserUpdate() {
         e.preventDefault();
         console.log(user);
         const opciones = {
-            method: 'UPDATE',
+            method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -36,7 +56,7 @@ function UserUpdate() {
 
             if (!response.ok) {
                 const d = await response.json();
-                const {msg} = d
+                const { msg } = d
                 alert('Error al guardar el usuario:', msg);
                 return
             }

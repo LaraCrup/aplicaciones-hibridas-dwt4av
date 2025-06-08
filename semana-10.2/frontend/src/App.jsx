@@ -21,7 +21,6 @@ function App() {
           <li><NavLink to="/">Inicio</NavLink></li>
           <li><NavLink to="/products">Productos</NavLink></li>
           <li><NavLink to="/users">ABM de Usuarios</NavLink></li>
-          <li><NavLink to="/usernew">Nuevo usuario</NavLink></li>
           <li><NavLink to="/contact">Contacto</NavLink></li>
         </ul>
       </nav>
