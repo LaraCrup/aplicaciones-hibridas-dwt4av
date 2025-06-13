@@ -1,5 +1,5 @@
 import './App.css'
-import { Routes, Route, NavLink } from 'react-router-dom'
+import { Routes, Route} from 'react-router-dom'
 import {AuthProvider} from './context/AuthContext';
 import PrivateRoute from './utils/PrivateRoute';
 
@@ -13,22 +13,15 @@ import UserUpdate from './views/UserUpdate';
 import LogIn from './views/LogIn';
 
 import Header from './components/Header';
+import Nav from './components/Nav';
 
 function App() {
 
   return (
     <>
       <Header />
-      <nav>
-        <ul>
-          <li><NavLink to="/">Inicio</NavLink></li>
-          <li><NavLink to="/products">Productos</NavLink></li>
-          <li><NavLink to="/users">ABM de Usuarios</NavLink></li>
-          <li><NavLink to="/login">Log In</NavLink></li>
-          <li><NavLink to="/contact">Contacto</NavLink></li>
-        </ul>
-      </nav>
       <AuthProvider>
+      <Nav />
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/products' element={<Products />} />

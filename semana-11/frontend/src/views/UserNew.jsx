@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import '../Alert.css';
 
 function UserNew() {
     const host = 'http://localhost:3000/api'
@@ -9,6 +10,7 @@ function UserNew() {
         email: '',
         password: ''
     });
+    const [msg, setMsg] = useState({ text: '', type: '' });
     const navigate = useNavigate();
 
     function handlerChange(e) {
@@ -18,6 +20,7 @@ function UserNew() {
             ...user,
             [key]: value
         });
+        setMsg({ ...msg, text: '', type: '' });
     }
 
     async function postUser(e) {
@@ -31,13 +34,34 @@ function UserNew() {
             body: JSON.stringify(user)
         };
 
+        if (user.name.trim() === '') {
+            setMsg({ ...msg, text: 'El nombre es obligatorio', type: 'error' });
+            return;
+        }
+
+        if (user.name.trim().length < 3) {
+            setMsg({ ...msg, text: 'El nombre debe tener al menos 3 caracteres', type: 'error' });
+            return;
+        }
+
+        if (!user.email.trim().includes('@')) {
+            setMsg({ ...msg, text: 'El formato de email es invalido', type: 'error' });
+            return;
+        }
+
+        if (user.password.trim().length < 3) {
+            setMsg({ ...msg, text: 'La contraseña debe tener al menos 3 caracteres', type: 'error' });
+            return;
+        }
+
         try {
             const response = await fetch(`${host}/users`, opciones);
 
             if (!response.ok) {
                 const d = await response.json();
-                const {msg} = d
+                const { msg } = d
                 alert('Error al guardar el usuario:', msg);
+                setMsg({ ...msg, text: msg});
                 return
             }
 
@@ -55,6 +79,7 @@ function UserNew() {
     return (
         <>
             <h2>Crear Usuario</h2>
+            {msg.text ? <h4></h4> : <h4 className={`alert + msg.type}`}>{msg.text}</h4>}
             <form onSubmit={postUser}>
                 <label htmlFor="name">Nombre</label>
                 <input name='name' value={user.name} type="text" onChange={handlerChange} />
